@@ -24,7 +24,7 @@ nikto -h http://192.168.1.1:8080                                                
 gobuster dir -u http://192.168.1.1:8080 -w /usr/share/wordlists/dirb/big.txt                        ## directory enum
 gobuster dir -u http://192.168.1.1:8080 -w /usr/share/wordlists/dirb/common.txt                     ## directory enum
 gobuster dir -u http://192.168.1.1:8080 -w /usr/share/wordlists/dirb/bit.txt -x txt                 ## txt file
-gobuster dir -u http://192.168.1.1:8080 -w /usr/share/wordlists/dirb/bit.txt -x pdf                 ## txt file
+gobuster dir -u http://192.168.1.1:8080 -w /usr/share/wordlists/dirb/bit.txt -x pdf                 ## pdf file
 gobuster dir -u http://192.168.1.1:8080 -w /usr/share/wordlists/dirb/bit.txt --exclude-length 1917  ## length exclusion
 
 wpscan --url http://192.168.1.1                                                                     ## standard scan
