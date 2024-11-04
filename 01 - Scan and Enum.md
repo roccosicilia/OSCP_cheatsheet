@@ -1,9 +1,9 @@
 # 01 - Scan and Enumeration
 
 Index
-- [Port Scan](#Port Scan)
-- [Web Scan](#Web Scan)
-- [Service Enumeration](#Service Enumeration)
+- [Port Scan](#Port-Scan)
+- [Web Scan](#Web-Scan)
+- [Service Enumeration](#Service-Enumeration)
 
 ## Port Scan
 ``` bash
