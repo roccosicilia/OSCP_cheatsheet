@@ -33,12 +33,44 @@ wpscan --url http://192.168.1.1 --enumerate p --plugins-detection aggressive    
 
 ## Service Enumeration
 
-- Web Server Version
-- HTML header
+- Update /etc/hosts file with target FQDN
+- Web Server Version from NMAP and NIKTO
+- HTML header (browsing)
 - File robots.txt: sub-directory to scan
 - Not stardard service PORT
-- Anonymous Access and brute-force:
-    - FTP: try anon login
-    - SMB: try anon login
-    - SSH: try Hydra brute force
- 
+
+### Anonymous Access and brute-force
+
+Try anonymous FTP acccess.
+``` bash
+$ ftp 192.168.1.1                       ## target host
+Name (192.168.1.1:user): anonymous      ## insert "anonymous"
+Password: ....                          ## blank 
+230 Login successful.
+ftp>
+```
+
+Try anonymous SMB acccess.
+``` bash
+smbclient -L //192.168.1.1/             ## target host
+Password for [WORKGROUP\user]:          ## blank
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	C$              Disk      Default share
+	Share           Disk      
+[...]
+smbclient //192.168.1.1/Share           ## target host
+Password for [WORKGROUP\user]:          ## blank
+Try "help" to get a list of possible commands.
+smb: \> dir
+  .                                   D        0  Thu Oct 13 19:19:09 2022
+  ..                                DHS        0  Mon Nov  4 12:38:09 2024
+  Users                               D        0  Thu Oct 13 19:19:08 2022      ## directory listing
+```
+
+Try Hydra brute force.
+``` bash
+hydra -L user.txt -P /usr/share/wordlists/rockyou.txt -s 22 ssh://192.168.1.1   ## SSH brute force
+hydra -L user.txt -P passwd.txt rdp://192.168.1.1                               ## RDP with password list
+```
