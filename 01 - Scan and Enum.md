@@ -38,7 +38,7 @@ wpscan --url http://192.168.1.1 --enumerate p --plugins-detection aggressive    
 - File robots.txt: sub-directory to scan
 - Not stardard service PORT
 - Anonymous Access and brute-force:
- - FTP: try anon login
- - SMB: try anon login
- - SSH: try Hydra brute force
+    - FTP: try anon login
+    - SMB: try anon login
+    - SSH: try Hydra brute force
  
