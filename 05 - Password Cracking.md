@@ -15,5 +15,5 @@ hydra -L user.txt -P /usr/share/wordlists/rockyou.txt 192.168.1.1 -s 443 http-po
 ```
 
 ``` bash
-hydra -L user.txt -P -P /usr/share/wordlists/rockyou.txt rdp://192.168.1.1
+hydra -L user.txt -P /usr/share/wordlists/rockyou.txt rdp://192.168.1.1
 ```
