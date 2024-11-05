@@ -36,7 +36,7 @@ Get-ChildItem -Path c:\ -Include password* -File -Recurse -ErrorAction SilentlyC
 
 Get-ChildItem -Path c:\ -Include *.git* -File -Recurse -ErrorAction SilentlyContinue                            ## search for git repo
 git log                                                                                                         ## check information in log
-git view $LOGIN                                                                                                 ## check commit log content
+git view $LOGID                                                                                                 ## check commit log content
 ```
 
 Other:
