@@ -55,7 +55,7 @@ SeImpersonatePrivilege        Impersonate a client after authentication Enabled 
 SeCreateGlobalPrivilege       Create global objects                     Enabled 
 SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
 ```
-Verify if **SeImpersonatePrivilege** is enabled.
+Verify if SeImpersonatePrivilege is enabled.
 Useful link: https://jlajara.gitlab.io/Potatoes_Windows_Privesc.
 
 ### Exploit by PrintSpoofer64
