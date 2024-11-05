@@ -5,15 +5,37 @@ Index
 - [SeImpersonatePrivilege](#SeImpersonatePrivilege)
 
 ## System Enumeration
-Base commands and tools:
+Base commands and tools for Windows:
 ``` bash
-whoami                              ## domain\username
-whoami /groups                      ## my groups
-whoami /priv                        ## user's local privileges
-Get-LocalUser                       ## local users list
-Get-LocalGroup                      ## local groups list
-Get-LocalGroupMember $GROUP_NAME    ## members list
-Get-ChildItem Env:                  ## environment vars -- tips: informations hidden
+whoami                                  ## domain\username
+whoami /groups                          ## my groups
+whoami /priv                            ## user's local privileges
+Get-LocalUser                           ## local users list
+Get-LocalGroup                          ## local groups list
+Get-LocalGroupMember $GROUP_NAME        ## members list
+net user $USERNAME                      ## user information
+
+systeminfo                              ## OS version, domain config, ...
+ipconfig /all                           ## network configuration
+route print                             ## local routing table
+netstat -nao                            ## acctive connections and listening ports
+Get-ChildItem Env:                      ## environment vars -- tips: informations hidden
+Get-Process                             ## process list
+
+Get-History                             ## history
+(Get-PSReadlineOption).HistorySavePath  ## read the content to access the history
+
+Get-ChildItem -Path c:\ -Include *.txt -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
+Get-ChildItem -Path c:\ -Include *.pdf -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
+Get-ChildItem -Path c:\ -Include credential* -File -Recurse -ErrorAction SilentlyContinue                       ## search for interesting file
+Get-ChildItem -Path c:\ -Include password* -File -Recurse -ErrorAction SilentlyContinue                         ## search for interesting file
+
+
+
+
+Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname ## installed software
+Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname             ## installed software
+
 ```
 
 
