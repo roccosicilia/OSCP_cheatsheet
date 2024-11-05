@@ -18,7 +18,7 @@ Get-ChildItem Env:                  ## environment vars -- tips: informations hi
 
 
 ## SeImpersonatePrivilege
-- Verify the user's privileges:
+Verify user's privileges:
 ``` text
 whoami /priv
 
@@ -28,7 +28,7 @@ PRIVILEGES INFORMATION
 Privilege Name                Description                               State   
 ============================= ========================================= ========
 SeChangeNotifyPrivilege       Bypass traverse checking                  Enabled 
-**SeImpersonatePrivilege        Impersonate a client after authentication Enabled**
+SeImpersonatePrivilege        Impersonate a client after authentication Enabled     ## possibly vulnerable
 SeCreateGlobalPrivilege       Create global objects                     Enabled 
 SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
 ```
