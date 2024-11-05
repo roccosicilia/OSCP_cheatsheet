@@ -6,4 +6,7 @@ Index
 
 ## Phishing Lab
 ### Authenticated attack to mailserver
--
+Scenario:
+ - WebDav resource with malicious link file
+ - Reverse Shell command for Windows
+ - Valid user for send email

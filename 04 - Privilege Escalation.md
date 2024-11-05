@@ -7,8 +7,8 @@ Index
     - [Exploit by GodPotato](#Exploit-by-GodPotato)
 
 ## System Enumeration
-Base commands and tools for Windows:
-``` bash
+Base commands for Windows:
+``` powershell
 whoami                                  ## domain\username
 whoami /groups                          ## my groups
 whoami /priv                            ## user's local privileges
@@ -26,12 +26,21 @@ Get-Process                             ## process list
 
 Get-History                             ## history
 (Get-PSReadlineOption).HistorySavePath  ## read the content to access the history
-
+```
+Search information in file:
+``` powershell
 Get-ChildItem -Path c:\ -Include *.txt -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
 Get-ChildItem -Path c:\ -Include *.pdf -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
 Get-ChildItem -Path c:\ -Include credential* -File -Recurse -ErrorAction SilentlyContinue                       ## search for interesting file
 Get-ChildItem -Path c:\ -Include password* -File -Recurse -ErrorAction SilentlyContinue                         ## search for interesting file
 
+Get-ChildItem -Path c:\ -Include *.git* -File -Recurse -ErrorAction SilentlyContinue                            ## search for git repo
+git log                                                                                                         ## check information in log
+git view $LOGIN                                                                                                 ## check commit log content
+```
+
+Other:
+``` powershell
 Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname ## installed software
 Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname             ## installed software
 ```
