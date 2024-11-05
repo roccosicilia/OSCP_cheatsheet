@@ -16,6 +16,7 @@ Get-LocalUser                           ## local users list
 Get-LocalGroup                          ## local groups list
 Get-LocalGroupMember $GROUP_NAME        ## members list
 net user $USERNAME                      ## user information
+net user /domain                        ## domain user list
 
 systeminfo                              ## OS version, domain config, ...
 ipconfig /all                           ## network configuration
@@ -31,6 +32,7 @@ Search information in file:
 ``` powershell
 Get-ChildItem -Path c:\ -Include *.txt -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
 Get-ChildItem -Path c:\ -Include *.pdf -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
+Get-ChildItem -Path c:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue                            ## search for interesting file
 Get-ChildItem -Path c:\ -Include credential* -File -Recurse -ErrorAction SilentlyContinue                       ## search for interesting file
 Get-ChildItem -Path c:\ -Include password* -File -Recurse -ErrorAction SilentlyContinue                         ## search for interesting file
 

