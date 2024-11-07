@@ -58,14 +58,25 @@ Tools for Windows:
 Base commands for Linux:
 ``` bash
 id
-cat /etc/passwd
-ls -la /home
-ps ax
-uname -na
-ss -anp
-ls -la /etc/cron*
+env
+cat /etc/passwd                         ## user list
+ls -la /home                            ## home
+ps ax                                   ## process list
+uname -na                               ## os version
+ss -anp                                 ## connections
+ls -la /etc/cron*                       ## cron script
+cat /etc/fstab
+find / -writable -type d 2>/dev/null    ## writable dir
+find / -perm -u=s -type f 2>/dev/null
 
+lsmod
+/sbin/modinfo $driver_name
+dpkg -l
 ```
+
+Tools for Linux:
+ - unix-privesc-check
+ - linpeas
 
 ## SeImpersonatePrivilege
 ### Requirements
