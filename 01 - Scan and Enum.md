@@ -20,6 +20,7 @@ sudo nmap -sS -sC -sV -oN file.txt 192.168.1.1          ## SYN scan, script defa
 ## Web Scan
  - check all sub-directory
  - check for file extension: txt, pdf, sql, sh, ps1, bak, kdbx
+ - analyze pdf meta-data
 ``` bash
 nikto -h http://192.168.1.1:8080                                                                    ## NIKTO scan, webapp enumeration
 
