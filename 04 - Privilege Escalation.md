@@ -2,11 +2,14 @@
 
 Index
 - [System Enumeration](#System-Enumeration)
+    - [Windows](#Windows)
+    - [Linux](#Linux)
 - [SeImpersonatePrivilege](#SeImpersonatePrivilege)
     - [Exploit by PrintSpoofer64](#Exploit-by-PrintSpoofer64)
     - [Exploit by GodPotato](#Exploit-by-GodPotato)
 
 ## System Enumeration
+### Windows
 Base commands for Windows:
 ``` powershell
 whoami                                  ## domain\username
@@ -41,15 +44,28 @@ git log                                                                         
 git view $LOGID                                                                                                 ## check commit log content
 ```
 
-Other:
+Other for Windows:
 ``` powershell
 Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname ## installed software
 Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname             ## installed software
 ```
 
-Tools:
+Tools for Windows:
  - winPEAS.exe
  - Seatbelt.exe
+
+### Linux
+Base commands for Linux:
+``` bash
+id
+cat /etc/passwd
+ls -la /home
+ps ax
+uname -na
+ss -anp
+ls -la /etc/cron*
+
+```
 
 ## SeImpersonatePrivilege
 ### Requirements
