@@ -64,7 +64,9 @@ ls -la /home                            ## home
 ps ax                                   ## process list
 uname -na                               ## os version
 ss -anp                                 ## connections
-ls -la /etc/cron*                       ## cron script
+cat /etc/crontab                        ## main crontab
+ls -la /etc/cron*                       ## crontab script
+ls -la /etc/sudo*
 cat /etc/fstab
 find / -writable -type d 2>/dev/null    ## writable dir
 find / -perm -u=s -type f 2>/dev/null
