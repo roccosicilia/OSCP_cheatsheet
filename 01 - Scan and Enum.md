@@ -19,7 +19,7 @@ sudo nmap -sS -sC -sV -oN file.txt 192.168.1.1          ## SYN scan, script defa
 
 ## Web Scan
  - check all sub-directory
- - check for file extension: txt, pdf, sql, sh, ps1, bak, kdbx
+ - check for file extension: txt, pdf, sql, sh, ps1, bak, kdbx, zip, tar, git
  - analyze pdf meta-data
 ``` bash
 nikto -h http://192.168.1.1:8080                                                                    ## NIKTO scan, webapp enumeration
@@ -32,8 +32,16 @@ gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirb/big.txt -x txt  
 gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirb/big.txt -x pdf                 		## pdf file
 gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirb/big.txt --exclude-length 1917  		## length exclusion
 
-wpscan --url http://192.168.1.1                                                                     ## standard scan
+wpscan --url http://192.168.1.1                                                                     ## standard wordpress scan
 wpscan --url http://192.168.1.1 --enumerate p --plugins-detection aggressive                        ## vulnerable plugin
+
+joomscan -u http://192.168.1.1/path-to-cms															## standard joomla scan
+joomscan -u http://192.168.1.1/path-to-cms -ec														## components enum
+
+git-dumper http://192.168.1.1/.git/ $destination_dir												## dump di una repo esposta
+git log				## elenco azioni
+git show $id		## dettagli di una specifica azione
+
 ```
 
 ## Service Enumeration
