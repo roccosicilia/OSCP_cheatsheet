@@ -27,17 +27,23 @@ nikto -h http://192.168.1.1:8080                                                
 gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirb/common.txt                    		## directory enum
 gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirb/big.txt	                    		## directory enum
 gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt	## directory enum (large)
-
 gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirb/big.txt -x txt                 		## txt file
 gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirb/big.txt -x pdf                 		## pdf file
 gobuster dir -u http://192.168.1.1 -w /usr/share/wordlists/dirb/big.txt --exclude-length 1917  		## length exclusion
 
+feroxbuster --url http://192.168.1.1/ --depth 2 --wordlist /usr/share/wordlists/dirb/common.txt		## faster and useful dir enum
+```
+
+CMS scan: 
+``` bash
 wpscan --url http://192.168.1.1                                                                     ## standard wordpress scan
 wpscan --url http://192.168.1.1 --enumerate p --plugins-detection aggressive                        ## vulnerable plugin
-
 joomscan -u http://192.168.1.1/path-to-cms															## standard joomla scan
 joomscan -u http://192.168.1.1/path-to-cms -ec														## components enum
+```
 
+Git repo:
+``` bash
 git-dumper http://192.168.1.1/.git/ $destination_dir	## repository dump if /.git/ dir available
 git log													## commit logs
 git show $id											## commit info and message
