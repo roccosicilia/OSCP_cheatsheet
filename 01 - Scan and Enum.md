@@ -40,7 +40,7 @@ joomscan -u http://192.168.1.1/path-to-cms -ec														## components enum
 
 git-dumper http://192.168.1.1/.git/ $destination_dir	## repository dump if /.git/ dir available
 git log													## commit logs
-git show $id											## commit info.
+git show $id											## commit info and message
 ```
 
 ## Service Enumeration
