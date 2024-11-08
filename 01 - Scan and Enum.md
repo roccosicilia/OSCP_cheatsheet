@@ -38,10 +38,9 @@ wpscan --url http://192.168.1.1 --enumerate p --plugins-detection aggressive    
 joomscan -u http://192.168.1.1/path-to-cms															## standard joomla scan
 joomscan -u http://192.168.1.1/path-to-cms -ec														## components enum
 
-git-dumper http://192.168.1.1/.git/ $destination_dir												## dump di una repo esposta
-git log				## elenco azioni
-git show $id		## dettagli di una specifica azione
-
+git-dumper http://192.168.1.1/.git/ $destination_dir		## repository dump if /.git/ dir available
+git log														## commit logs
+git show $id												## commit info.
 ```
 
 ## Service Enumeration
