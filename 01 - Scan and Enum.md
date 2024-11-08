@@ -36,10 +36,10 @@ feroxbuster --url http://192.168.1.1/ --depth 2 --wordlist /usr/share/wordlists/
 
 CMS scan: 
 ``` bash
-wpscan --url http://192.168.1.1                                                                     ## standard wordpress scan
-wpscan --url http://192.168.1.1 --enumerate p --plugins-detection aggressive                        ## vulnerable plugin
-joomscan -u http://192.168.1.1/path-to-cms															## standard joomla scan
-joomscan -u http://192.168.1.1/path-to-cms -ec														## components enum
+wpscan --url http://192.168.1.1													## standard wordpress scan
+wpscan --url http://192.168.1.1 --enumerate p --plugins-detection aggressive	## vulnerable plugin
+joomscan -u http://192.168.1.1/path-to-cms										## standard joomla scan
+joomscan -u http://192.168.1.1/path-to-cms -ec									## components enum
 ```
 
 Git repo:
