@@ -5,6 +5,7 @@ Index
 - [Form Login](#Form-Login)
 - [RDP](#RDP)
 - [KeePass DB](#KeePass-DB)
+- [Zip](#Zip)
 
 ## First Rule
 Always try the default credentials!
@@ -26,3 +27,9 @@ keepass2john Database.kdbx > keepass.hash                                       
 hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule  ## cracking
 ```
 (*) The hash file was generated with the string "Database:", delete it.
+
+## Zip
+``` bash
+zip2john file.zip > file.hash                               ## hash extraction
+john file.hash --wordlist=/usr/share/wordlists/rockyou.txt  ## cracking
+```
