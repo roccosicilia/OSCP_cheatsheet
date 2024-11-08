@@ -9,6 +9,13 @@ Index
     - [Exploit by GodPotato](#Exploit-by-GodPotato)
 
 ## System Enumeration
+### General Info
+- Search for:
+    - user privileges and system configuration
+    - git repository and logs
+    - archive file like ZIP, BAK, KDBX (and crack it!)
+    - web configuration file (CMS config, DB connection file)
+
 ### Windows
 Base commands for Windows:
 ``` powershell
@@ -59,17 +66,24 @@ Base commands for Linux:
 ``` bash
 id
 env
-cat /etc/passwd                         ## user list
-ls -la /home                            ## home
-ps ax                                   ## process list
-uname -na                               ## os version
-ss -anp                                 ## connections
-cat /etc/crontab                        ## main crontab
-ls -la /etc/cron*                       ## crontab script
+history
+cat /etc/passwd                             ## user list
+ls -la /home                                ## home
+ps ax                                       ## process list
+uname -na                                   ## os version
+ss -anp                                     ## connections
+cat /etc/crontab                            ## main crontab
+ls -la /etc/cron*                           ## crontab script
 ls -la /etc/sudo*
 cat /etc/fstab
-find / -writable -type d 2>/dev/null    ## writable dir
+find / -writable -type d 2>/dev/null        ## writable dir
 find / -perm -u=s -type f 2>/dev/null
+
+find ./ -type f -name "*.txt" 2>/dev/null   ## file by extension
+find ./ -type f -name "*.tar" 2>/dev/null   ## file by extension
+find ./ -type f -name "*.bak" 2>/dev/null   ## file by extension
+find ./ -type f -name "*.zip" 2>/dev/null   ## file by extension
+find ./ -type f -name "*.gz" 2>/dev/null    ## file by extension
 
 lsmod
 /sbin/modinfo $driver_name
