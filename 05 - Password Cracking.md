@@ -33,3 +33,8 @@ hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/has
 zip2john file.zip > file.hash                               ## hash extraction
 john file.hash --wordlist=/usr/share/wordlists/rockyou.txt  ## cracking
 ```
+
+## SMB password spraying
+``` bash
+crackmapexec smb 192.168.1.1 -d domain.local -u user.txt -p passwd.txt
+```

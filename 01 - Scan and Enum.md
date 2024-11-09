@@ -49,9 +49,12 @@ git log													## commit logs
 git show $id											## commit info and message
 ```
 
-Win Services:
+Windows Service Enum:
 ``` bash
-sudo nbtscan -r 192.168.1.0/24							## scan for win services (ex: SAMBA)
+sudo nbtscan -r 192.168.1.0/24												## scan for win services (ex: SAMBA)
+crackmapexec smb 192.168.1.1 -d domain.local -u 'guest' -p '' --rid-brute	## RID brute forcing for user enumeration
+enum4linux 192.168.1.1
+enum4linux -a -u '$username' -p '$password' 192.168.1.1
 ```
 
 ## Service Enumeration
