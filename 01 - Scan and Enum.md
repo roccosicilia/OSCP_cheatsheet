@@ -49,6 +49,11 @@ git log													## commit logs
 git show $id											## commit info and message
 ```
 
+Win Services:
+``` bash
+sudo nbtscan -r 192.168.1.0/24							## scan for win services (ex: SAMBA)
+```
+
 ## Service Enumeration
 
 - Update /etc/hosts file with target FQDN
