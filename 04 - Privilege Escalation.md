@@ -15,6 +15,7 @@ Index
     - git repository and logs
     - archive file like ZIP, BAK, KDBX (and crack it!)
     - web configuration file (CMS config, DB connection file)
+    - enumeration tool output
 
 ### Windows
 Base commands for Windows:
@@ -43,6 +44,7 @@ Search information in file:
 Get-ChildItem -Path c:\ -Include *.txt -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
 Get-ChildItem -Path c:\ -Include *.pdf -File -Recurse -ErrorAction SilentlyContinue                             ## search for interesting file
 Get-ChildItem -Path c:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue                            ## search for interesting file
+Get-ChildItem -Path c:\ -Include *.git -File -Recurse -ErrorAction SilentlyContinue 
 Get-ChildItem -Path c:\ -Include credential* -File -Recurse -ErrorAction SilentlyContinue                       ## search for interesting file
 Get-ChildItem -Path c:\ -Include password* -File -Recurse -ErrorAction SilentlyContinue                         ## search for interesting file
 
