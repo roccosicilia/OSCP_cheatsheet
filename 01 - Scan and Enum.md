@@ -7,14 +7,14 @@ Index
 
 ## Port Scan
 ``` bash
-nc -nvv -w 1 -z 192.168.1.1 1-1000 > output.txt 2>&1    ## TCP port via netcat
-nc -nvv -u -w 1 -z 192.168.1.1 1-1000 > output.txt 2>&1 ## UDP port via netcat
+nc -nvv -w 1 -z 192.168.1.1 1-1000 > nc.txt 2>&1		## TCP port via netcat
+nc -nvv -u -w 1 -z 192.168.1.1 1-1000 > nc.txt 2>&1		## UDP port via netcat
 sudo nmap -sT -p- 192.168.1.1                           ## TCP scan, all port
 sudo nmap -sS -p- 192.168.1.1                           ## SYN scan, all port
 sudo nmap -sC -p- 192.168.1.1                           ## script default, all port
 sudo nmap -sT -p- --script vuln 192.168.1.1             ## vuln script, all port
 sudo nmap -sT -p- --script all 192.168.1.1              ## all script, all port
-sudo nmap -sS -sC -sV -oN file.txt 192.168.1.1          ## SYN scan, script default, file output
+sudo nmap -sS -sC -sV -oN nmap.txt 192.168.1.1			## SYN scan, script default, file output
 ```
 
 ## Web Scan

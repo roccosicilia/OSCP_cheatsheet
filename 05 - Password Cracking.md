@@ -7,8 +7,11 @@ Index
 - [KeePass DB](#KeePass-DB)
 - [Zip](#Zip)
 
-## First Rule
-Always try the default credentials!
+## First Rules
+- Always try the default credentials!
+- Search users and passwords in all available files
+- Identify the hash (hashid)
+
 
 ## Form Login
 ``` bash
