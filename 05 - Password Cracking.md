@@ -6,6 +6,8 @@ Index
 - [RDP](#RDP)
 - [KeePass DB](#KeePass-DB)
 - [Zip](#Zip)
+- [SMB password spraying](#SMB-password-spraying)
+- [NTML hash](#NTLM-hash)
 
 ## First Rules
 - Always try the default credentials!
@@ -41,3 +43,6 @@ john file.hash --wordlist=/usr/share/wordlists/rockyou.txt  ## cracking
 ``` bash
 crackmapexec smb 192.168.1.1 -d domain.local -u user.txt -p passwd.txt
 ```
+
+## NTML hash
+hashcat -m 1000 file.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force

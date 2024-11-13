@@ -9,6 +9,7 @@ Index
     - [Exploit by GodPotato](#Exploit-by-GodPotato)
 - [SeBackupPrivileges](#SeBackupPrivileges)
     - [Exploit by secrets dump](#Exploit-by-secrets-dump)
+- [Windows.old directory](#Windows.old-directory)
 
 ## System Enumeration
 ### General Info
@@ -182,3 +183,6 @@ Administrator:500:00000000000000000000000000000000:00000000000000000000000000000
 
 evil-winrm -i 192.168.1.1 -u Administrator -H 00000000000000000000000000000000
 ```
+
+## Windows.old directory
+- Copy SAM and SYSTEM files

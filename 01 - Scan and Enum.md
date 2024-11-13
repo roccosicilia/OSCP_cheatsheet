@@ -4,6 +4,9 @@ Index
 - [Port Scan](#Port-Scan)
 - [Web Scan](#Web-Scan)
 - [Service Enumeration](#Service-Enumeration)
+	- [FTP](#FTP)
+	- [SMB](#SMB)
+	- [SNMP](#SNMP)
 
 ## Port Scan
 ``` bash
@@ -15,6 +18,11 @@ sudo nmap -sC -p- 192.168.1.1                           ## script default, all p
 sudo nmap -sT -p- --script vuln 192.168.1.1             ## vuln script, all port
 sudo nmap -sT -p- --script all 192.168.1.1              ## all script, all port
 sudo nmap -sS -sC -sV -oN nmap.txt 192.168.1.1			## SYN scan, script default, file output
+sudo nmap -sU --top-ports=100 192.168.1.1				## UDP scan
+
+### WARNING ### VERY SLOW ### UDP SCAN ###
+sudo nmap -sU 192.168.1.1
+sudo nmap -sU -sS 192.168.1.1
 ```
 
 ## Web Scan
@@ -58,15 +66,7 @@ enum4linux -a -u '$username' -p '$password' 192.168.1.1
 ```
 
 ## Service Enumeration
-
-- Update /etc/hosts file with target FQDN
-- Web Server Version from NMAP and NIKTO
-- HTML header (browsing)
-- File robots.txt: sub-directory to scan
-- Not stardard service PORT
-
-### Anonymous Access and brute-force
-
+### FTP
 Try anonymous FTP acccess.
 ``` bash
 $ ftp 192.168.1.1                       ## target host
@@ -76,6 +76,7 @@ Password: ....                          ## blank
 ftp>
 ```
 
+### SMB
 Try anonymous SMB acccess.
 ``` bash
 smbclient -L //192.168.1.1/             ## target host
@@ -95,8 +96,9 @@ smb: \> dir
   Users                               D        0  Thu Oct 13 19:19:08 2022      ## directory listing
 ```
 
-Try Hydra brute force.
+### SNMP
 ``` bash
-hydra -L user.txt -P /usr/share/wordlists/rockyou.txt -s 22 ssh://192.168.1.1   ## SSH brute force
-hydra -L user.txt -P passwd.txt rdp://192.168.1.1                               ## RDP with password list
+onesixtyone -c community.txt -i target.txt								## community discovery
+snmpwalk -c public -v1 192.168.1.1										## get snmp content
+snmpwalk -c public -v1 192.168.1.1 NET-SNMP-EXTEND-MIB::nsExtendObjects	## get snmp EXTEND MIB
 ```

