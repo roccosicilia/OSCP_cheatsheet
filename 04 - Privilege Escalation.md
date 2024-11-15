@@ -11,7 +11,7 @@ Index
     - [Exploit by secrets dump](#Exploit-by-secrets-dump)
 - [Windows.old directory](#Windows.old-directory)
 - [Linux DirtyPipe](#Linux-DirtyPipe)
-- [JDWP Java Debug](#JDWP-Java-Debu)
+- [JDWP Java Debug](#JDWP-Java-Debug)
 
 ## System Enumeration
 ### General Info
