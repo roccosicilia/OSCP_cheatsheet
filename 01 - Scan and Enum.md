@@ -23,6 +23,9 @@ sudo nmap -sU --top-ports=100 192.168.1.1	## UDP scan
 ### WARNING ### VERY SLOW ### UDP SCAN ###
 sudo nmap -sU 192.168.1.1
 sudo nmap -sU -sS 192.168.1.1
+
+### DMZ to LAN
+proxychains nmap -vvv -sT --top-ports=20 -Pn 192.168.1.1
 ```
 
 ## Web Scan
