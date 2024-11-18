@@ -80,21 +80,32 @@ ftp>
 ### SMB
 Try anonymous SMB acccess.
 ``` bash
-smbclient -L //192.168.1.1/	## target host
-Password for [WORKGROUP\user]:	## blank
+smbclient -L //192.168.1.1/	-U anonymous	## target host
+Password for [WORKGROUP\anonymous]:			## blank
 
 	Sharename       Type      Comment
 	---------       ----      -------
 	C$              Disk      Default share
 	Share           Disk      
 [...]
-smbclient //192.168.1.1/Share	## target host
-Password for [WORKGROUP\user]:	## blank
+smbclient //192.168.1.1/Share -U anonymous	## target host
+Password for [WORKGROUP\anonymous]:			## blank
 Try "help" to get a list of possible commands.
 smb: \> dir
   .                                   D        0  Thu Oct 13 19:19:09 2022
   ..                                DHS        0  Mon Nov  4 12:38:09 2024
   Users                               D        0  Thu Oct 13 19:19:08 2022	## directory listing
+```
+
+Guest auth:
+``` bash
+smbclient -L //192.168.1.1/	-U "DOMAIN\guest"	## target host
+Password for [DOMAIN\guest]:	## blank
+```
+
+Impacket tool: if smbcliet fail
+``` bash
+impacket-smbclient -no-pass anonymous@192.168.1.1
 ```
 
 ### SNMP

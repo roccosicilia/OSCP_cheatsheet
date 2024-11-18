@@ -44,6 +44,7 @@ Get-Process                             ## process list
 
 Get-History                             ## history
 (Get-PSReadlineOption).HistorySavePath  ## read the content to access the history
+dir C:\Users\$USER\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLin   ## check for rotate file
 ```
 Search information in file:
 ``` powershell
@@ -94,6 +95,9 @@ find ./ -type f -name "*.tar" 2>/dev/null   ## file by extension
 find ./ -type f -name "*.bak" 2>/dev/null   ## file by extension
 find ./ -type f -name "*.zip" 2>/dev/null   ## file by extension
 find ./ -type f -name "*.gz" 2>/dev/null    ## file by extension
+
+find / -type f -name "gcc*" 2>/dev/null     ## file by extension
+find / -type f -name "gcc-*" 2>/dev/null    ## file by extension
 
 lsmod
 /sbin/modinfo $driver_name
@@ -251,3 +255,5 @@ root         853       1  0 06:23 ?        00:00:01 java -Xdebug -Xrunjdwp:trans
 
 This scenario need an interaction with the application to "invoke" the payload.
 
+## TAR wildcard
+https://medium.com/@polygonben/linux-privilege-escalation-wildcards-with-tar-f79ab9e407fa

